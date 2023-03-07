@@ -8,3 +8,9 @@ ex01: js 모듈만 번들링 하기
       "start": "node dev-server.js",
       "build": "npx webpack ./src/index.js -o ./public"
    },
+
+3. 빌드
+[ex01] $ npm run build
+
+4. 실행
+[ex01] $ npm start
