@@ -13,7 +13,7 @@ React Practice - Basics
     ex02: Application의 분리1: 전통적인 단순한 파일의 분리
     ex03: Application의 분리2: ES6 Module System
     ex04: Application Bundling(번들링) ,(webpack)
-    ex05: 
-    ex06: 
+    ex05: React API 기반으로 Application 리팩토링
+    ex06: React JSX 기반으로 Application 리팩토링
     ex07: ex00.cra Reconfiguration (직접 ex00.cra 생성)
     ex08: JSX Tutorial
