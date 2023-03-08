@@ -8,6 +8,7 @@ ex01: Property(props)
     src/01: FoodList: 함수 컴포넌트
     src/02: FoodList: Data Flo(Top -> Down)함수 컴포넌트
     src/03: FoodList: 클래스 컴포넌트
+    src/04: Property Validation
 
 ========================================================================================================
 1. 설치
@@ -15,6 +16,7 @@ ex01: Property(props)
         $ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass  @babel/core @babel/cli @babel/preset-env @babel/preset-env @babel/preset-react babel-loader
     2) React Library
         $ npm i react react-dom
+        $ npm i prop-types
 
 2. webpack.config.js 설정
 3. babe.config.json 설정
