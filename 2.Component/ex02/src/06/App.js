@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Content from './Content';
 
 const StyledH1 = styled.h1
-`
+    `
     width: 180px;
     text-align: center;
     margin: 100px auto;
@@ -15,7 +15,7 @@ const StyledH1 = styled.h1
 `;
 
 const StyledDiv = styled.div
-`
+    `
     text-align: center;
 `;
 
@@ -30,7 +30,9 @@ const App = () => {
     return (
         <StyledDiv id='App'>
             <StyledH1>CSS in JS</StyledH1>
-            <Content>Styled Component 연습</Content>
+            <Content color={'#f00'}>
+                Styled Component 연습
+            </Content>
         </StyledDiv>
     );
 };

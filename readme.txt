@@ -9,3 +9,17 @@ React Practice
 7. | 통합개발 (Integration) / Fe(React) + BE(Spring Boot, API Server) ⭐⭐
 8. | [참고1] webpack-Practice ⭐⭐
 9. | [참고2] babel-Practice ⭐⭐
+
+kanbanboard
+    |-- backend
+    |-- frontend
+
+
+emaillist
+    |-- backend
+    |-- frontend
+
+
+mysite07(guestbook, gallery)
+    |-- backend
+    |-- frontend
