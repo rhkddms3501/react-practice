@@ -12,28 +12,25 @@ export default function App() {
     useEffect(() => {
         setInterval(function () {
             setTicks(tick => tick + 1);
-            
+
             const today = new Date();
-            const h = today.getHours();
-            const m = today.getMinutes();
-            const s = today.getSeconds();
-            setHours(h);
-            setMinutes(m);
-            setSeconds(s);
+            setHours(today.getHours());
+            setMinutes(today.getMinutes());
+            setSeconds(today.getSeconds());
         }, 1000)
     }, [])
     return (
         <div>
             <span>{ticks}</span>
             {
-                ticks % 10 === 0 ? null :
+                ticks % 10 === 0 ?
+                    null :
                     <Clock
                         message={'ex05: useEffect Hook example'}
                         hours={hours}
-                        minutes={minutes  < 10 ? '0' + minutes : minutes}
-                        seconds={seconds < 10 ? '0' + seconds : seconds} />
+                        minutes={minutes}
+                        seconds={seconds} />
             }
-
         </div>
     );
 }
