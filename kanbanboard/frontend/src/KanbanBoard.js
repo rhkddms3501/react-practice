@@ -1,36 +1,47 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styles from './assets/css/KanbanBoard.css';
 import data from './assets/json/data.json';
 import CardList from './CardList';
+import update from 'react-addons-update';
 
 const KanbanBoard = () => {
     const [cards, setCards] = useState(data);
 
-    const changeTaskDone = function (cardNo, taskNo, done) {
-        console.log(cardNo, taskNo, done);
+    const changeTaskDone = function(cardNo, taskNo, done) {
         const cardIndex = cards.findIndex(card => card.no === cardNo);
-        const taskIndex = cards[cardIndex].tasks.findIndex(task => task.no === taskNo );
-        cards[cardIndex].tasks[taskIndex].done = false;
-
-        setCards(cards);
+        const taskIndex = cards[cardIndex].tasks.findIndex(task => task.no === taskNo);        
+        const newCards = update(cards, {
+            [cardIndex]: { // 변수일때는 [], cards안에 속성이 있을때는 []안씀
+                tasks: {
+                    [taskIndex]: {
+                        done: {
+                            $set: done
+                        }
+                    }
+                }
+            }
+        });
+       
+        setCards(newCards);
     }
+
     return (
         <div className={styles.KanbanBoard}>
-            <CardList
+            <CardList 
                 key={'To Do'}
                 title={'To Do'}
-                cards={cards.filter((card) => card.status === 'ToDo')}
-                callback={changeTaskDone} />
+                cards={cards.filter(card => card.status === 'ToDo')}
+                callback={changeTaskDone}/>
             <CardList
                 key={'Doing'}
                 title={'Doing'}
-                cards={cards.filter((card) => card.status === 'Doing')}
-                callback={changeTaskDone} />
+                cards={cards.filter(card => card.status === 'Doing')}
+                callback={changeTaskDone}/>
             <CardList
                 key={'Done'}
                 title={'Done'}
-                cards={cards.filter((card) => card.status === 'Done')}
-                callback={changeTaskDone} />
+                cards={cards.filter(card => card.status === 'Done')}
+                callback={changeTaskDone}/>
         </div>
     );
 };

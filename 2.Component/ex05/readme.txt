@@ -27,6 +27,7 @@ ex05: Component - LifeCycle
         $ npm i react react-dom
         $ npm i prop-types
         $ npm i styled-components
+        $ npm i react-addons-update
 
 2. webpack.config.js 설정
 3. babe.config.json 설정
