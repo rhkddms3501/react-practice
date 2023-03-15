@@ -5,18 +5,22 @@ import Clock from './Clock';
 export default function App() {
 
     const [ticks, setTicks] = useState(0);
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
+    const [clock, setClock] = useState({
+        hours : '',
+        minutes : '',
+        seconds : ''
+    });
 
     useEffect(() => {
         const timer = setInterval(function () {
             setTicks(tick => tick + 1);
 
             const today = new Date();
-            setHours(today.getHours());
-            setMinutes(today.getMinutes());
-            setSeconds(today.getSeconds());
+            setClock({
+                hours : today.getHours(),
+                minutes : today.getMinutes(),
+                seconds : today.getSeconds()
+            })
         }, 1000);
          return(() => clearInterval(timer));        
     }, []);
@@ -29,9 +33,9 @@ export default function App() {
                     null :
                     <Clock
                         message={'ex05: useEffect Hook example'}
-                        hours={hours}
-                        minutes={minutes}
-                        seconds={seconds} />
+                        hours={clock.hours}
+                        minutes={clock.minutes}
+                        seconds={clock.seconds} />
             }
         </div>
     );
