@@ -24,10 +24,7 @@ ex05: Component - LifeCycle
     1) 개발 툴
         $ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass  @babel/core @babel/cli @babel/preset-env @babel/preset-env @babel/preset-react babel-loader
     2) React Library
-        $ npm i react react-dom
-        $ npm i prop-types
-        $ npm i styled-components
-        $ npm i react-addons-update
+        $ npm i react react-dom prop-types styled-components react-addons-update
 
 2. webpack.config.js 설정
 3. babe.config.json 설정
