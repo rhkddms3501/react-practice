@@ -10,15 +10,17 @@ export default function App() {
     const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
-        setInterval(function () {
+        const timer = setInterval(function () {
             setTicks(tick => tick + 1);
 
             const today = new Date();
             setHours(today.getHours());
             setMinutes(today.getMinutes());
             setSeconds(today.getSeconds());
-        }, 1000)
-    }, [])
+        }, 1000);
+         return(() => clearInterval(timer));        
+    }, []);
+
     return (
         <div>
             <span>{ticks}</span>
