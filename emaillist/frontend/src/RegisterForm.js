@@ -9,9 +9,7 @@ const RegisterForm = ({ callbackAddEmail }) => {
             onSubmit={(e) => {
                 e.preventDefault();
                 callbackAddEmail(e.target.firstName.value,e.target.lastName.value,e.target.email.value);
-                e.target.firstName.value='';
-                e.target.lastName.value='';
-                e.target.email.value='';
+                e.target.reset();
             }} >
             <input type="text" name="firstName" placeholder="성" className={styles.InputFirstName} />
             <input type="text" name="lastName" placeholder="이름" className={styles.InputLastName} />
