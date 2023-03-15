@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import Task from './Task';
+import styles from './assets/css/TaskList.css'
 
-const TaskList = ({cardNo, tasks, callback}) => {
+const TaskList = ({tasks, callbackAddTask, callbackChangeTaskDone}) => {
+    
+
     return (
         <div>
             <ul>
@@ -9,12 +12,20 @@ const TaskList = ({cardNo, tasks, callback}) => {
                     tasks.map(task => <Task
                                         key={task.no}
                                         no={task.no}
-                                        cardNo={cardNo}                                        
                                         name={task.name}
                                         done={task.done}
-                                        callback={callback}/>)
+                                        callbackChangeTaskDone={callbackChangeTaskDone}/>)
                 }
             </ul>
+            <input 
+                type='text' 
+                placeholder='Add Task...'
+                className={styles.TaskList__add_task}
+                onKeyDown={(e)=>{
+                    if(e.key === 'Enter'){
+                        callbackAddTask(e.target.value);
+                    }
+                }} />
         </div>
     );
 };

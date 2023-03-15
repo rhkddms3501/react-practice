@@ -1,30 +1,122 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styles from './assets/scss/Card.scss';
 import TaskList from './TaskList';
+import update from 'react-addons-update';
 
-const Card = ({no, title, description, tasks, callback}) => {
+const Card = ({ no, title, description }) => {
     const [showDetail, setShowDetail] = useState(false);
+    const [tasks, setTasks] = useState([]);
 
+    const changeTaskDone = async (taskNo, done) => {
+        try {
+            const response = await fetch(`/api/task/${taskNo}`, {
+                method: 'put',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `done=${done}`
+            });
+
+            if (!response.ok) { // response의 status가 200이 아니면
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+
+            const json = await response.json(); // response의 body를 json으로 변환?
+            if (json.result !== 'success') {
+                throw new Error(`${json.result} ${json.message}`);
+            }
+            
+            const newTasks = update(tasks, {
+                [tasks.findIndex(task => task.no === json.data.no)]: {
+                    done: {
+                        $set: json.data.done
+                    }
+                }
+            });
+
+            setTasks(newTasks);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const addTask = async(taskName) => {
+        const newTask ={
+            no: null,
+            name: taskName,
+            done: 'N',
+            cardNo: no
+        };
+        try {
+            const response = await fetch(`/api/task`, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'content-Type': 'application/json',
+                },
+                body: JSON.stringify(newTask)
+            });
+
+            if (!response.ok) { // response의 status가 200이 아니면
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+
+            const json = await response.json(); // response의 body를 json으로 변환?
+            if (json.result !== 'success') {
+                throw new Error(`${json.result} ${json.message}`);
+            }
+
+            setTasks([json.data, ...tasks]);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
     return (
         <div className={styles.Card}>
             <div
-                className={
-                    showDetail ?
-                        [styles.Card__Title, styles.Card__Title__open].join(' ') : 
-                        styles.Card__Title
-                }
-                onClick={e => setShowDetail(!showDetail)}>
+                className={showDetail ? [styles.Card__Title, styles.Card__Title__open].join(' ') : styles.Card__Title}
+                onClick={async () => {
+                    if (!showDetail) {
+                        // task통신
+                        try {
+                            const response = await fetch(`/api/task?cardNo=${no}`, {
+                                method: 'get',
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            });
+
+                            if (!response.ok) { // response의 status가 200이 아니면
+                                throw new Error(`${response.status} ${response.statusText}`);
+                            }
+
+                            const json = await response.json(); // response의 body를 json으로 변환?
+                            if (json.result !== 'success') {
+                                throw new Error(`${json.result} ${json.message}`);
+                            }
+
+                            setTasks(json.data);
+                        } catch (error) {
+                            console.error(error.message);
+                        }
+                    }
+                    setShowDetail(!showDetail)
+                }}>
                 {title}
-            </div>            
+            </div>
             {
-                showDetail ?    
+                showDetail ?
                     <div className={styles.Card__Details}>
                         {description}
-                        <TaskList cardNo={no} tasks={tasks} callback={callback}/>
+                        <TaskList
+                            tasks={tasks}
+                            callbackAddTask={addTask}
+                            callbackChangeTaskDone={changeTaskDone} />
                     </div>
                     :
                     null
-            }        
+            }
         </div>
     );
 };
