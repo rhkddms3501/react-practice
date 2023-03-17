@@ -12,7 +12,36 @@
 
 ===============================================================================
 
-2. frontend
+2. ssh 연결(ssh key 인증)
+	
+	1) key 생성하기
+		$ ssh-keygen -t rsa -b 2048 -m PEM -C "rhkddms3501@naver.com"
+		
+	2) key 생성 확인 (위치 : root) (cd )
+		- ~/.ssh/id_rsa : private key (개인 키)
+		- ~/.ssh/id_rsa.pub : public key (공개 키)
+	
+	3) 공개키를 서버에 설치하기
+		# mv ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+		
+	4) 테스트 
+		(window에선 안될.. linux에서 됨)
+		# ssh -i mykey.pem root@192.168.10.115
+		
+		(window에서 될..)
+		- Xhell 에서 root로 연결
+		- 등록정보 방법을 password에서 public key로
+		- 개인키 복사 >> mykey.pem으로 저장
+		- 불러오기
+		
+	5) jenkins
+		- Publish over SSH 플러그인 설치
+		- Publish over SSH 플러그인 으로 ssh server 등록 (springboot-publish-server)
+		- 프로젝트의 빌드 후 조치(post-build action)의 Send build artifacts over SSH 설정 
+
+===============================================================================
+
+3. frontend
 	1) 설치
 		- 개발 툴
 			$ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass  @babel/core @babel/cli @babel/preset-env @babel/preset-env @babel/preset-react babel-loader case-sensitive-paths-webpack-plugin react-modal
