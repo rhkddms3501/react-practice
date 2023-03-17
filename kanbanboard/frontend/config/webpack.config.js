@@ -1,4 +1,5 @@
 const path = require('path');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = function (env) {
     return {
@@ -35,6 +36,9 @@ module.exports = function (env) {
             }]
         },
         devtool: "eval-source-map",
+        plugins: [
+            new CaseSensitivePathsPlugin()
+        ],
         devServer: {
             host: '0.0.0.0',
             port: 9090,
