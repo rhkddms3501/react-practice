@@ -5,7 +5,7 @@
 		eclipse Ctrl+F11 (스프링부트 애플리케이션 실행)    // Developement 모드로 싱행됨
 
 	2) 빌드(배포)
-		# mvn -f kanbanboard/backend clean package
+		# mvn -f kanbanboard/backend exec:exec clean package
 		
 		테스트
 		# java -Dspring.profiles.active=production -jar kanbanboard/backend/target/kanbanboard.jar
@@ -25,7 +25,7 @@
 		- package.json		
 			  "scripts": {
 				    "start": "npx webpack serve --config config/webpack.config.js --progress --mode development",
-		    		"build": "npx webpack --config config/webpack.config.js --mode production"
+		    		"build": "npm i && npx webpack --config config/webpack.config.js --mode production"
 	  			},
 	4) 테스트 (개발 모드)
 		$ npm start
