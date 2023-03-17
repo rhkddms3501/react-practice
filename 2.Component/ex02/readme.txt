@@ -17,6 +17,8 @@ ex02: Component Styling
         - webpack.config.js > css.loader options: {modules: true}
         - $ npm run debug src=06 css-modules=true
     7) React Modal
+        - 설치
+            $ npm i react-modal
     8) Modal: Material UI
 
     src/01: 
@@ -30,7 +32,7 @@ ex02: Component Styling
 ========================================================================================================
 1. 설치
     1) 개발 툴
-        $ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass  @babel/core @babel/cli @babel/preset-env @babel/preset-env @babel/preset-react babel-loader
+        $ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass  @babel/core @babel/cli @babel/preset-env @babel/preset-env @babel/preset-react babel-loader react-modal
     2) React Library
         $ npm i react react-dom
         $ npm i prop-types
