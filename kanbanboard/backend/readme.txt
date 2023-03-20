@@ -34,20 +34,21 @@
 		- 개인키 복사 >> mykey.pem으로 저장
 		- 불러오기
 		
-	5) ssh 연결 확인
-		- ~/.ssh/environment
-			====================
-			
-			====================
-		- /ect/ssh/sshd_config
-			PermitUserEnvironment yes 
-		
+	5) ssh 연결 환경설정
+	   - ~/.ssh/environment
+	     ==================
+	     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/local/douzone2023/java/bin:/usr/local/douzone2023/git/bin:/usr/local/douzone2023/maven3.8/bin:/usr/local/douzone2023/mariadb/bin:/usr/local/douzone2023/python/bin:/usr/local/douzone2023/node/bin:/root/bin
+	     ==================	
+	   
+	   - /etc/ssh/sshd_config
+	     PermitUserEnvironment yes
+	      
 	6) jenkins
 		- Publish over SSH 플러그인 설치
-		- Publish over SSH 플러그인 으로 ssh server 등록 (springboot-publish-server)
-		- 프로젝트의 빌드 후 조치(post-build action)의 Send build artifacts over SSH 설정
-			kanbanboard.jar : transfer
-			launch.sh : transfer + execution
+		- Publish over SSH 플러그인 ssh server 등록(springboot-publish-server)
+		- 프로젝트의 빌드 후 조치(post-build action)의 send suild artifacts over ssh 설정 	   
+		  kanbanboard.jar : transfer
+		  launch.sh : transfer + execution
 
 ===============================================================================
 
