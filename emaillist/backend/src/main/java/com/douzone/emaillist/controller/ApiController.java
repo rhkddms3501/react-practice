@@ -23,6 +23,13 @@ public class ApiController {
 	
 	@Autowired
 	private EmaillistRepository emaillistRepository;
+	
+	@GetMapping("/hello")
+	public ResponseEntity<JsonResult> hello() {
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(JsonResult.success("hello~~"));
+	}
 
 	/*
      *  전체 이메일 리스트
