@@ -35,7 +35,12 @@
 		- 불러오기
 		
 	5) ssh 연결 확인
-	
+		- ~/.ssh/environment
+			====================
+			
+			====================
+		- /ect/ssh/sshd_config
+			PermitUserEnvironment yes 
 		
 	6) jenkins
 		- Publish over SSH 플러그인 설치
